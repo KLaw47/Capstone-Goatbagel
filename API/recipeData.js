@@ -15,7 +15,7 @@ const getRecipies = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const createRecipe = (recipeObj, uid) => new Promise((resolve, reject) => {
+const createRecipe = (recipeObj) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/Recipes.json`, recipeObj)
     .then((response) => {
       const payload = { firebaseKey: response.data.name };
@@ -27,9 +27,9 @@ const createRecipe = (recipeObj, uid) => new Promise((resolve, reject) => {
 });
 
 const deleteRecipe = (uid) => new Promise((resolve, reject) => {
-  axios.delete(`${dbUrl}/members/${uid}.json`)
+  axios.delete(`${dbUrl}/Recipes/${uid}.json`)
     .then(() => {
-      getMembers(uid).then(resolve);
+      getRecipies(uid).then(resolve);
     })
     .catch((error) => reject(error));
 });
@@ -46,10 +46,24 @@ const getSingleRecipe = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getRecipeFlour = (flourId) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/Flours.json?orderBy="firebaseKey"&equalTo="${flourId}"`)
+    .then((response) => resolve(Object.values(response.data)))
+    .catch((error) => reject(error));
+});
+
+const getRecipeYeast = (yeastId) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/Yeasts.json?orderBy="firebaseKey"&equalTo="${yeastId}"`)
+    .then((response) => resolve(Object.values(response.data)))
+    .catch((error) => reject(error));
+});
+
 export {
   getRecipies,
   getSingleRecipe,
   createRecipe,
   deleteRecipe,
   updateRecipe,
+  getRecipeFlour,
+  getRecipeYeast,
 };
