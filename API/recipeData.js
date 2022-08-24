@@ -46,14 +46,14 @@ const getSingleRecipe = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getRecipeFlour = (firebaseKey) => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/Flours.json?orderBy="${firebaseKey}"&equalTo="flourId"`)
+const getRecipeFlour = (flourId) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/Flours.json?orderBy="firebaseKey"&equalTo="${flourId}"`)
     .then((response) => resolve(Object.values(response.data)))
     .catch((error) => reject(error));
 });
 
-const getRecipeYeast = (firebaseKey) => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/Yeasts.json?orderBy="${firebaseKey}"&equalTo="yeastId"`)
+const getRecipeYeast = (yeastId) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/Yeasts.json?orderBy="firebaseKey"&equalTo="${yeastId}"`)
     .then((response) => resolve(Object.values(response.data)))
     .catch((error) => reject(error));
 });
