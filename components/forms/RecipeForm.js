@@ -16,7 +16,7 @@ const initialState = {
   public: true,
 };
 
-export default function RecipeForm({ obj }) {
+function RecipeForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
   const router = useRouter();
   const { user } = useAuth();
@@ -94,3 +94,5 @@ RecipeForm.propTypes = {
 RecipeForm.defaultProps = {
   obj: initialState,
 };
+
+export default RecipeForm;
