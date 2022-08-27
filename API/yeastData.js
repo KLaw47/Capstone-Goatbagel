@@ -51,5 +51,5 @@ export {
   getSingleYeast,
   createYeast,
   updateYeast,
-  deleteYeast
+  deleteYeast,
 };
