@@ -21,7 +21,7 @@ const createRecipe = (recipeObj) => new Promise((resolve, reject) => {
       const payload = { firebaseKey: response.data.name };
       axios.patch(`${dbUrl}/Recipes/${response.data.name}.json`, payload)
         .then(() => {
-          getRecipies().then(resolve);
+          getRecipes().then(resolve);
         });
     }).catch((error) => reject(error));
 });
@@ -29,14 +29,14 @@ const createRecipe = (recipeObj) => new Promise((resolve, reject) => {
 const deleteRecipe = (uid) => new Promise((resolve, reject) => {
   axios.delete(`${dbUrl}/Recipes/${uid}.json`)
     .then(() => {
-      getRecipies(uid).then(resolve);
+      getRecipes(uid).then(resolve);
     })
     .catch((error) => reject(error));
 });
 
 const updateRecipe = (recipeObj) => new Promise((resolve, reject) => {
   axios.patch(`${dbUrl}/Recipes/${recipeObj.firebaseKey}.json`, recipeObj)
-    .then(() => getRecipies(recipeObj.user).then(resolve))
+    .then(() => getRecipes(recipeObj.user).then(resolve))
     .catch(reject);
 });
 

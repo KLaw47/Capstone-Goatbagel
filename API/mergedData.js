@@ -1,6 +1,4 @@
 import { getRecipeFlour, getSingleRecipe, getRecipeYeast } from './recipeData';
-// import { getSingleFlour } from './flourData';
-// import { getSingleYeast } from './yeastData';
 
 const viewRecipeDetails = (recipeFirebaseKey) => new Promise((resolve, reject) => {
   getSingleRecipe(recipeFirebaseKey)

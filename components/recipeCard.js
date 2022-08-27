@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { deleteRecipe } from '../API/recipeData';
 
 function RecipeCard({ recipeObj, onUpdate }) {
-  const deleteThisBook = () => {
+  const deleteThisRecipe = () => {
     if (window.confirm(`Delete ${recipeObj.name}?`)) {
       deleteRecipe(recipeObj.firebaseKey).then(() => onUpdate());
     }
@@ -17,11 +17,11 @@ function RecipeCard({ recipeObj, onUpdate }) {
       <Card.Img variant="top" src={recipeObj.image} alt={recipeObj.name} style={{ height: '300px' }} />
       <Card.Body>
         <Card.Title>{recipeObj.name}</Card.Title>
-        <p>{recipeObj.user.name}</p>
-        <Link href={`/recipe/edit/${recipeObj.firebaseKey}`} passHref>
+        <p>{recipeObj.user}</p>
+        <Link href={`/Recipe/edit/${recipeObj.firebaseKey}`} passHref>
           <Button variant="info">EDIT</Button>
         </Link>
-        <Button variant="danger" onClick={deleteThisBook} className="m-2">
+        <Button variant="danger" onClick={deleteThisRecipe} className="m-2">
           DELETE
         </Button>
       </Card.Body>
