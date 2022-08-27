@@ -23,6 +23,20 @@ export default function ViewRecipeDetail() {
           {recipeDetail.name}
         </h5>
         <p>
+          Flour: {recipeDetail.flour.grams} Grams
+        </p>
+        <p>
+          Salt: {recipeDetail.salt} Grams
+        </p>
+        <p>
+          Yeast: {recipeDetail.yeast.grams} Grams
+        </p>
+        <p>
+          Water: {recipeDetail.water} Grams
+        </p>
+      </div>
+      <div>
+        <p>
           {recipeDetail.directions}
         </p>
       </div>

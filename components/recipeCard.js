@@ -14,7 +14,9 @@ function RecipeCard({ recipeObj, onUpdate }) {
 
   return (
     <Card className="card" style={{ width: '20rem', margin: '10px' }}>
-      <Card.Img variant="top" src={recipeObj.image} alt={recipeObj.name} style={{ height: '300px' }} />
+      <Link href={`/Recipe/${recipeObj.firebaseKey}`} passHref>
+        <Card.Img variant="top" src={recipeObj.image} alt={recipeObj.name} style={{ height: '300px' }} />
+      </Link>
       <Card.Body>
         <Card.Title>{recipeObj.name}</Card.Title>
         <p>{recipeObj.user}</p>
