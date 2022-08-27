@@ -1,24 +1,27 @@
-import { signOut } from '../utils/auth';
-import { useAuth } from '../utils/context/authContext';
+import React, { useEffect, useState } from 'react';
+// import { signOut } from '../utils/auth';
+// import { useAuth } from '../utils/context/authContext';
+import { getRecipes } from '../API/recipeData';
+import RecipeCard from '../components/RecipeCard';
 
 function Home() {
-  const { user } = useAuth();
+  const [recipes, setRecipes] = useState([]);
+  //  const { user } = useAuth();
+  const getAllTheRecipes = () => {
+    getRecipes().then(setRecipes);
+  };
+  useEffect(() => {
+    getAllTheRecipes();
+  }, []);
 
   return (
-    <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
-      style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '400px',
-        margin: '0 auto',
-      }}
-    >
-      <h1>Hello {user.displayName}! </h1>
-      <p>Click the button below to logout!</p>
-      <button className="btn btn-danger btn-lg copy-btn" type="button" onClick={signOut}>
-        Sign Out
-      </button>
+    <div className="text-center my-4">
+      <div className="d-flex flex-wrap">
+        {recipes.map((recipe) => (
+          <RecipeCard key={recipe.firebaseKey} recipeObj={recipe} onUpdate={getAllTheRecipes} />
+        ))}
+      </div>
+
     </div>
   );
 }

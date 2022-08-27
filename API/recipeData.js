@@ -3,7 +3,7 @@ import { clientCredentials } from '../utils/client';
 
 const dbUrl = clientCredentials.databaseURL;
 
-const getRecipies = () => new Promise((resolve, reject) => {
+const getRecipes = () => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/Recipes.json`)
     .then((response) => {
       if (response.data) {
@@ -59,7 +59,7 @@ const getRecipeYeast = (yeastId) => new Promise((resolve, reject) => {
 });
 
 export {
-  getRecipies,
+  getRecipes,
   getSingleRecipe,
   createRecipe,
   deleteRecipe,
