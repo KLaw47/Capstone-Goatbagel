@@ -8,7 +8,7 @@ import { useAuth } from '../../utils/context/authContext';
 import { createRecipe, updateRecipe } from '../../API/recipeData';
 
 const initialState = {
-  recipe_name: '',
+  name: '',
   salt: '',
   water: '',
   directions: '',
@@ -49,7 +49,7 @@ function RecipeForm({ obj }) {
     <Form onSubmit={handleSubmit}>
       <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Recipe</h2>
       <FloatingLabel controlId="floatingInput1" label="Recipe Name" className="mb-3">
-        <Form.Control type="text" placeholder="Enter Recipe Name" name="recipe_name" value={formInput.recipe_name} onChange={handleChange} required />
+        <Form.Control type="text" placeholder="Enter Recipe Name" name="name" value={formInput.name} onChange={handleChange} required />
       </FloatingLabel>
       <FloatingLabel controlId="floatingInput2" label="Salt" className="mb-3">
         <Form.Control type="text" placeholder="Enter Salt Amount" name="salt" value={formInput.salt} onChange={handleChange} required />
@@ -58,7 +58,7 @@ function RecipeForm({ obj }) {
         <Form.Control type="text" placeholder="Enter Water Amount" name="water" value={formInput.water} onChange={handleChange} required />
       </FloatingLabel>
       <FloatingLabel controlId="floatingInput2" label="Directions" className="mb-3">
-        <Form.Control type="text" placeholder="Enter Directions" name="directions" value={formInput.dir} onChange={handleChange} required />
+        <Form.Control type="text" placeholder="Enter Directions" name="directions" value={formInput.directions} onChange={handleChange} required />
       </FloatingLabel>
       <FloatingLabel controlId="floatingInput2" label="Image" className="mb-3">
         <Form.Control type="text" placeholder="Image" name="image" value={formInput.image} onChange={handleChange} required />
@@ -82,7 +82,7 @@ function RecipeForm({ obj }) {
 
 RecipeForm.propTypes = {
   obj: PropTypes.shape({
-    recipe_name: PropTypes.string,
+    name: PropTypes.string,
     salt: PropTypes.string,
     water: PropTypes.string,
     directions: PropTypes.string,
