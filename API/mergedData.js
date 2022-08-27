@@ -1,10 +1,13 @@
-import { getRecipeYeast, getRecipeFlour, getSingleRecipe } from './recipeData';
+import { getRecipeFlour, getSingleRecipe, getRecipeYeast } from './recipeData';
+// import { getSingleFlour } from './flourData';
+// import { getSingleYeast } from './yeastData';
 
-const viewRecipeDetails = (recipeFirebaseKey, yeastId, flourId) => new Promise((resolve, reject) => {
-  Promise.all([getSingleRecipe(recipeFirebaseKey), getRecipeFlour(flourId), getRecipeYeast(yeastId)])
-    .then(([recipeObj, flourArr, yeastArr]) => {
-      resolve({ ...recipeObj, flour: flourArr, yeast: yeastArr });
-    }).catch((error) => reject(error));
+const viewRecipeDetails = (recipeFirebaseKey) => new Promise((resolve, reject) => {
+  getSingleRecipe(recipeFirebaseKey)
+    .then((recipeObj) => (Promise.all([getRecipeFlour(recipeObj.flourId), getRecipeYeast(recipeObj.yeastId)])
+      .then(([flour, yeast]) => {
+        resolve({ ...recipeObj, flour, yeast });
+      }))).catch((error) => reject(error));
 });
 
 export default viewRecipeDetails;

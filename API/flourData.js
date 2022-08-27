@@ -51,5 +51,5 @@ export {
   getSingleFlour,
   createFlour,
   updateFlour,
-  deleteFlour
+  deleteFlour,
 };
