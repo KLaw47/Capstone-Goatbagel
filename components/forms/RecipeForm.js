@@ -6,6 +6,8 @@ import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
 import { createRecipe, updateRecipe } from '../../API/recipeData';
+import { getFlours } from '../../API/flourData';
+import { getYeasts } from '../../API/yeastData';
 
 const initialState = {
   name: '',
@@ -18,10 +20,15 @@ const initialState = {
 
 function RecipeForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
+  const [flours, setFlours] = useState([]);
+  const [yeasts, setYeasts] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
 
   useEffect(() => {
+    getFlours().then(setFlours);
+    getYeasts().then(setYeasts);
+
     if (obj.firebaseKey) setFormInput(obj);
   }, [obj, user]);
 
@@ -45,43 +52,92 @@ function RecipeForm({ obj }) {
       });
     }
   };
+
   return (
-    <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Recipe</h2>
-      <FloatingLabel controlId="floatingInput1" label="Recipe Name" className="mb-3">
-        <Form.Control type="text" placeholder="Enter Recipe Name" name="name" value={formInput.name} onChange={handleChange} required />
-      </FloatingLabel>
-      <FloatingLabel controlId="floatingInput2" label="Salt" className="mb-3">
-        <Form.Control type="text" placeholder="Enter Salt Amount" name="salt" value={formInput.salt} onChange={handleChange} required />
-      </FloatingLabel>
-      <FloatingLabel controlId="floatingInput2" label="Water" className="mb-3">
-        <Form.Control type="text" placeholder="Enter Water Amount" name="water" value={formInput.water} onChange={handleChange} required />
-      </FloatingLabel>
-      <FloatingLabel controlId="floatingInput2" label="Directions" className="mb-3">
-        <Form.Control type="text" placeholder="Enter Directions" name="directions" value={formInput.directions} onChange={handleChange} required />
-      </FloatingLabel>
-      <FloatingLabel controlId="floatingInput2" label="Image" className="mb-3">
-        <Form.Control type="text" placeholder="Image" name="image" value={formInput.image} onChange={handleChange} required />
-      </FloatingLabel>
-      <Form.Check
-        className="text-white mb-3"
-        type="switch"
-        id="public"
-        name="public"
-        label="public?"
-        checked={formInput.public}
-        onChange={(e) => setFormInput((prevState) => ({
-          ...prevState,
-          public: e.target.checked,
-        }))}
-      />
-      <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Recipe</Button>
-    </Form>
+    <>
+      <Form onSubmit={handleSubmit}>
+        <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Recipe</h2>
+        <FloatingLabel controlId="floatingInput1" label="Recipe Name" className="mb-3">
+          <Form.Control type="text" placeholder="Enter Recipe Name" name="name" value={formInput.name} onChange={handleChange} required />
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingInput2" label="Salt" className="mb-3">
+          <Form.Control type="text" placeholder="Enter Salt Amount" name="salt" value={formInput.salt} onChange={handleChange} required />
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingInput2" label="Water" className="mb-3">
+          <Form.Control type="text" placeholder="Enter Water Amount" name="water" value={formInput.water} onChange={handleChange} required />
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingInput2" label="Directions" className="mb-3">
+          <Form.Control type="text" placeholder="Enter Directions" name="directions" value={formInput.directions} onChange={handleChange} required />
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingInput2" label="Image" className="mb-3">
+          <Form.Control type="text" placeholder="Image" name="image" value={formInput.image} onChange={handleChange} required />
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingSelect" label="Flour">
+          <Form.Select
+            aria-label="Flour"
+            name="flourId"
+            onChange={handleChange}
+            className="mb-3"
+            required
+          >
+            <option value="">Select a Flour</option>
+            {
+            flours.map((flour) => (
+              <option
+                key={flour.firebaseKey}
+                value={flour.firebaseKey}
+                selected={obj.flourId === flour.firebaseKey}
+              >
+                {flour.flourType}
+              </option>
+            ))
+          }
+          </Form.Select>
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingSelect" label="Yeast">
+          <Form.Select
+            aria-label="yeast"
+            name="yeastId"
+            onChange={handleChange}
+            className="mb-3"
+            required
+          >
+            <option value="">Select Yeast</option>
+            {
+            yeasts.map((yeast) => (
+              <option
+                key={yeast.firebaseKey}
+                value={yeast.firebaseKey}
+                selected={obj.yeastId === yeast.firebaseKey}
+              >
+                {yeast.yeastType}
+              </option>
+            ))
+          }
+          </Form.Select>
+        </FloatingLabel>
+        <Form.Check
+          className="text-white mb-3"
+          type="switch"
+          id="public"
+          name="public"
+          label="public?"
+          checked={formInput.public}
+          onChange={(e) => setFormInput((prevState) => ({
+            ...prevState,
+            public: e.target.checked,
+          }))}
+        />
+        <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Recipe</Button>
+      </Form>
+    </>
   );
 }
 
 RecipeForm.propTypes = {
   obj: PropTypes.shape({
+    flourId: PropTypes.string,
+    yeastId: PropTypes.string,
     name: PropTypes.string,
     salt: PropTypes.string,
     water: PropTypes.string,
