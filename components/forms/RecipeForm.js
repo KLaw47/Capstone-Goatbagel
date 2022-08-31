@@ -13,6 +13,8 @@ const initialState = {
   name: '',
   salt: '',
   water: '',
+  flourAmount: '',
+  yeastAmount: '',
   directions: '',
   image: '',
   public: true,
@@ -40,13 +42,28 @@ function RecipeForm({ obj }) {
     }));
   };
 
+  const converter = (unit) => {
+    if (unit === 'cups') {
+      const selectedFlour = flours.find((flour) => flour.firebaseKey === formInput.flourId);
+      console.warn(selectedFlour, flours);
+      return Number(formInput.flourAmount) * Number(selectedFlour.grams);
+    }
+    const selectedYeast = yeasts.find((yeast) => yeast.firebaseKey === formInput.yeastId);
+    return Number(formInput.yeastAmount) * Number(selectedYeast.grams);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.firebaseKey) {
       updateRecipe(formInput)
         .then(() => router.push(`/Recipes/${obj.firebaseKey}`));
     } else {
-      const payload = { ...formInput, uid: user.uid };
+      const payload = {
+        ...formInput,
+        uid: user.uid,
+        flourAmount: converter('cups'),
+        yeastAmount: converter(),
+      };
       createRecipe(payload).then(() => {
         router.push('/');
       });
@@ -80,7 +97,7 @@ function RecipeForm({ obj }) {
             className="mb-3"
             required
           >
-            <option value="">Select a Flour</option>
+            <option value="">Select Flour Type</option>
             {
             flours.map((flour) => (
               <option
@@ -102,7 +119,7 @@ function RecipeForm({ obj }) {
             className="mb-3"
             required
           >
-            <option value="">Select Yeast</option>
+            <option value="">Select Yeast Type</option>
             {
             yeasts.map((yeast) => (
               <option
@@ -115,6 +132,12 @@ function RecipeForm({ obj }) {
             ))
           }
           </Form.Select>
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingInput1" label="Cups Flour" className="mb-3">
+          <Form.Control type="text" placeholder="Enter Recipe Flour" name="flourAmount" value={formInput.flourAmount} onChange={handleChange} required />
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingInput1" label="Ounces Yeast" className="mb-3">
+          <Form.Control type="text" placeholder="Enter Recipe Yeast" name="yeastAmount" value={formInput.yeastAmount} onChange={handleChange} required />
         </FloatingLabel>
         <Form.Check
           className="text-white mb-3"
@@ -138,6 +161,8 @@ RecipeForm.propTypes = {
   obj: PropTypes.shape({
     flourId: PropTypes.string,
     yeastId: PropTypes.string,
+    flourAmount: PropTypes.string,
+    yeastAmount: PropTypes.string,
     name: PropTypes.string,
     salt: PropTypes.string,
     water: PropTypes.string,

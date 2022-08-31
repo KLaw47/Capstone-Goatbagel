@@ -28,6 +28,12 @@ export default function ViewRecipeDetail() {
         <p>
           Water: {recipeDetail.water} Grams
         </p>
+        <p>
+          Flour: {recipeDetail.flourAmount} Grams
+        </p>
+        <p>
+          Yeast: {recipeDetail.yeastAmount} Grams
+        </p>
       </div>
       <div>
         <p>
