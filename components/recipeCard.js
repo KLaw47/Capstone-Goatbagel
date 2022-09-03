@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Link from 'next/link';
+// import { useAuth } from '../utils/context/authContext';
 import { deleteRecipe } from '../API/recipeData';
 
 function RecipeCard({ recipeObj, onUpdate }) {
+  // const { user } = useAuth;
   const deleteThisRecipe = () => {
     if (window.confirm(`Delete ${recipeObj.name}?`)) {
       deleteRecipe(recipeObj.firebaseKey).then(() => onUpdate());
@@ -19,7 +21,7 @@ function RecipeCard({ recipeObj, onUpdate }) {
       </Link>
       <Card.Body>
         <Card.Title>{recipeObj.name}</Card.Title>
-        <p>{recipeObj.user}</p>
+        <p>{recipeObj.userName}</p>
         <Link href={`/Recipe/edit/${recipeObj.firebaseKey}`} passHref>
           <Button variant="info">EDIT</Button>
         </Link>
@@ -36,6 +38,7 @@ RecipeCard.propTypes = {
     image: PropTypes.string,
     name: PropTypes.string,
     firebaseKey: PropTypes.string,
+    userName: PropTypes.string,
     user: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import {
   Navbar, Container, Nav,
 } from 'react-bootstrap';
+import UserProfile from './Modal';
 
 // import { signOut } from '../utils/auth';
 
@@ -26,6 +27,7 @@ export default function NavBar() {
             </Link>
           </Nav>
         </Navbar.Collapse>
+        <UserProfile />
       </Container>
     </Navbar>
   );

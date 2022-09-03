@@ -8,10 +8,11 @@ import { useAuth } from '../../utils/context/authContext';
 import { createRecipe, updateRecipe } from '../../API/recipeData';
 import { getFlours } from '../../API/flourData';
 import { getYeasts } from '../../API/yeastData';
+import getSalts from '../../API/saltData';
 
 const initialState = {
   name: '',
-  salt: '',
+  saltAmount: '',
   water: '',
   flourAmount: '',
   yeastAmount: '',
@@ -24,12 +25,14 @@ function RecipeForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
   const [flours, setFlours] = useState([]);
   const [yeasts, setYeasts] = useState([]);
+  const [salts, setSalts] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
 
   useEffect(() => {
     getFlours().then(setFlours);
     getYeasts().then(setYeasts);
+    getSalts().then(setSalts);
 
     if (obj.firebaseKey) setFormInput(obj);
   }, [obj, user]);
@@ -43,13 +46,16 @@ function RecipeForm({ obj }) {
   };
 
   const converter = (unit) => {
-    if (unit === 'cups') {
-      const selectedFlour = flours.find((flour) => flour.firebaseKey === formInput.flourId);
-      console.warn(selectedFlour, flours);
-      return Number(formInput.flourAmount) * Number(selectedFlour.grams);
-    }
+    const selectedFlour = flours.find((flour) => flour.firebaseKey === formInput.flourId);
     const selectedYeast = yeasts.find((yeast) => yeast.firebaseKey === formInput.yeastId);
-    return Number(formInput.yeastAmount) * Number(selectedYeast.grams);
+    const selectedSalt = salts.find((salt) => salt.firebaseKey === formInput.saltId);
+    if (unit === 'cups') {
+      return Number(formInput.flourAmount) * Number(selectedFlour.grams);
+    } if (unit === 'ounces') {
+      return Number(formInput.yeastAmount) * Number(selectedYeast.grams);
+    } if (unit === 'teaspoons') {
+      return Number(formInput.saltAmount) * Number(selectedSalt.grams);
+    } return Number(formInput.water) * 240;
   };
 
   const handleSubmit = (e) => {
@@ -58,11 +64,14 @@ function RecipeForm({ obj }) {
       updateRecipe(formInput)
         .then(() => router.push(`/Recipes/${obj.firebaseKey}`));
     } else {
+      console.warn(user.uid);
       const payload = {
         ...formInput,
-        uid: user.uid,
+        userName: user.displayName,
+        saltAmount: converter('teaspoons'),
+        water: converter(),
         flourAmount: converter('cups'),
-        yeastAmount: converter(),
+        yeastAmount: converter('ounces'),
       };
       createRecipe(payload).then(() => {
         router.push('/');
@@ -77,8 +86,27 @@ function RecipeForm({ obj }) {
         <FloatingLabel controlId="floatingInput1" label="Recipe Name" className="mb-3">
           <Form.Control type="text" placeholder="Enter Recipe Name" name="name" value={formInput.name} onChange={handleChange} required />
         </FloatingLabel>
-        <FloatingLabel controlId="floatingInput2" label="Salt" className="mb-3">
-          <Form.Control type="text" placeholder="Enter Salt Amount" name="salt" value={formInput.salt} onChange={handleChange} required />
+        <FloatingLabel controlId="floatingSelect" label="Salt">
+          <Form.Select
+            aria-label="Salt"
+            name="saltId"
+            onChange={handleChange}
+            className="mb-3"
+            value={formInput.saltId}
+            required
+          >
+            <option value="">Select Salt Type</option>
+            {
+            salts.map((salt) => (
+              <option
+                key={salt.firebaseKey}
+                value={salt.firebaseKey}
+              >
+                {salt.saltType}
+              </option>
+            ))
+          }
+          </Form.Select>
         </FloatingLabel>
         <FloatingLabel controlId="floatingInput2" label="Water" className="mb-3">
           <Form.Control type="text" placeholder="Enter Water Amount" name="water" value={formInput.water} onChange={handleChange} required />
@@ -95,6 +123,7 @@ function RecipeForm({ obj }) {
             name="flourId"
             onChange={handleChange}
             className="mb-3"
+            value={formInput.flourId}
             required
           >
             <option value="">Select Flour Type</option>
@@ -103,7 +132,6 @@ function RecipeForm({ obj }) {
               <option
                 key={flour.firebaseKey}
                 value={flour.firebaseKey}
-                selected={obj.flourId === flour.firebaseKey}
               >
                 {flour.flourType}
               </option>
@@ -117,6 +145,7 @@ function RecipeForm({ obj }) {
             name="yeastId"
             onChange={handleChange}
             className="mb-3"
+            value={formInput.yeastId}
             required
           >
             <option value="">Select Yeast Type</option>
@@ -125,7 +154,6 @@ function RecipeForm({ obj }) {
               <option
                 key={yeast.firebaseKey}
                 value={yeast.firebaseKey}
-                selected={obj.yeastId === yeast.firebaseKey}
               >
                 {yeast.yeastType}
               </option>
@@ -138,6 +166,9 @@ function RecipeForm({ obj }) {
         </FloatingLabel>
         <FloatingLabel controlId="floatingInput1" label="Ounces Yeast" className="mb-3">
           <Form.Control type="text" placeholder="Enter Recipe Yeast" name="yeastAmount" value={formInput.yeastAmount} onChange={handleChange} required />
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingInput1" label="Teaspoons Salt" className="mb-3">
+          <Form.Control type="text" placeholder="Enter Recipe Salt" name="saltAmount" value={formInput.saltAmount} onChange={handleChange} required />
         </FloatingLabel>
         <Form.Check
           className="text-white mb-3"
@@ -161,13 +192,15 @@ RecipeForm.propTypes = {
   obj: PropTypes.shape({
     flourId: PropTypes.string,
     yeastId: PropTypes.string,
+    saltId: PropTypes.string,
     flourAmount: PropTypes.string,
     yeastAmount: PropTypes.string,
     name: PropTypes.string,
-    salt: PropTypes.string,
+    saltAmount: PropTypes.string,
     water: PropTypes.string,
     directions: PropTypes.string,
     public: PropTypes.bool,
+    userName: PropTypes.string,
     firebaseKey: PropTypes.string,
   }),
 };

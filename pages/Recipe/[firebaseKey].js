@@ -2,12 +2,22 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Button from 'react-bootstrap/Button';
+import Link from 'next/link';
+import { deleteRecipe } from '../../API/recipeData';
 import viewRecipeDetails from '../../API/mergedData';
+import { useAuth } from '../../utils/context/authContext';
 
 export default function ViewRecipeDetail() {
   const [recipeDetail, setRecipeDetail] = useState({});
   const router = useRouter();
   const { firebaseKey } = router.query;
+  // const { user } = useAuth;
+  const deleteThisRecipe = () => {
+    if (window.confirm(`Delete ${recipeDetail.name}?`)) {
+      deleteRecipe(recipeDetail.firebaseKey).then(router.push('/'));
+    }
+  };
 
   useEffect(() => {
     viewRecipeDetails(firebaseKey).then(setRecipeDetail);
@@ -22,23 +32,19 @@ export default function ViewRecipeDetail() {
         <h5>
           {recipeDetail.name}
         </h5>
-        <p>
-          Salt: {recipeDetail.salt} Grams
-        </p>
-        <p>
-          Water: {recipeDetail.water} Grams
-        </p>
-        <p>
-          Flour: {recipeDetail.flourAmount} Grams
-        </p>
-        <p>
-          Yeast: {recipeDetail.yeastAmount} Grams
-        </p>
+        <p>Salt: {recipeDetail.saltAmount} Grams</p>
+        <p>Water: {recipeDetail.water} Grams</p>
+        <p>Flour: {recipeDetail.flourAmount} Grams</p>
+        <p>Yeast: {recipeDetail.yeastAmount} Grams</p>
       </div>
       <div>
-        <p>
-          {recipeDetail.directions}
-        </p>
+        {recipeDetail.directions}
+        <Link href={`/Recipe/edit/${recipeDetail.firebaseKey}`} passHref>
+          <Button variant="info">EDIT</Button>
+        </Link>
+        <Button variant="danger" onClick={deleteThisRecipe} className="m-2">
+          DELETE
+        </Button>
       </div>
     </div>
   );
