@@ -58,6 +58,12 @@ const getRecipeYeast = (yeastId) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getRecipeSalt = (saltId) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/Salt/${saltId}.json`)
+    .then((response) => resolve((response.data)))
+    .catch((error) => reject(error));
+});
+
 export {
   getRecipes,
   getSingleRecipe,
@@ -66,4 +72,5 @@ export {
   updateRecipe,
   getRecipeFlour,
   getRecipeYeast,
+  getRecipeSalt,
 };

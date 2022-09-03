@@ -13,7 +13,7 @@ function Home() {
   useEffect(() => {
     getAllTheRecipes();
   }, []);
-
+  console.warn(recipes);
   return (
     <div className="text-center my-4">
       <div className="d-flex flex-wrap">
