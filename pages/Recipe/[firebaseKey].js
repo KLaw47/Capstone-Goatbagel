@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Link from 'next/link';
 import { deleteRecipe } from '../../API/recipeData';
 import viewRecipeDetails from '../../API/mergedData';
-import { useAuth } from '../../utils/context/authContext';
+// import { useAuth } from '../../utils/context/authContext';
 
 export default function ViewRecipeDetail() {
   const [recipeDetail, setRecipeDetail] = useState({});
@@ -22,7 +22,7 @@ export default function ViewRecipeDetail() {
   useEffect(() => {
     viewRecipeDetails(firebaseKey).then(setRecipeDetail);
   }, []);
-  console.warn(recipeDetail);
+  // console.warn(recipeDetail);
   return (
     <div className="mt-5 d-flex flex-wrap">
       <div className="d-flex flex-column">

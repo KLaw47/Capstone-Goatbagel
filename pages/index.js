@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 // import { signOut } from '../utils/auth';
 // import { useAuth } from '../utils/context/authContext';
 import { getRecipes } from '../API/recipeData';
-import RecipeCard from '../components/RecipeCard';
+import RecipeCard from '../components/recipeCard';
 
 function Home() {
   const [recipes, setRecipes] = useState([]);
@@ -13,7 +13,7 @@ function Home() {
   useEffect(() => {
     getAllTheRecipes();
   }, []);
-  console.warn(recipes);
+  // console.warn(recipes);
   return (
     <div className="text-center my-4">
       <div className="d-flex flex-wrap">
