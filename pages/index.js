@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 // import { signOut } from '../utils/auth';
 // import { useAuth } from '../utils/context/authContext';
 import { getRecipes } from '../API/recipeData';
-import RecipeCard from '../components/recipeCard';
+import RecipeCard from '../components/RecipeCard';
 
 function Home() {
   const [recipes, setRecipes] = useState([]);
-  //  const { user } = useAuth();
+  // const { user } = useAuth();
   const getAllTheRecipes = () => {
     getRecipes().then(setRecipes);
   };
