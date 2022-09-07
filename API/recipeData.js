@@ -64,6 +64,18 @@ const getRecipeSalt = (saltId) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getUserRecipes = (uid) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/Recipes.json?orderBy="uid"&equalTo="${uid}"`)
+    .then((response) => {
+      if (response.data) {
+        resolve(Object.values(response.data));
+      } else {
+        resolve([]);
+      }
+    })
+    .catch((error) => reject(error));
+});
+
 export {
   getRecipes,
   getSingleRecipe,
@@ -73,4 +85,5 @@ export {
   getRecipeFlour,
   getRecipeYeast,
   getRecipeSalt,
+  getUserRecipes,
 };
