@@ -8,7 +8,7 @@ import { signOut } from '../utils/auth';
 function UserProfile() {
   const [show, setShow] = useState(false);
   const { user } = useAuth();
-  console.warn(user);
+  // console.warn(user);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 

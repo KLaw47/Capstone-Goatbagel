@@ -7,7 +7,8 @@ import { useAuth } from '../utils/context/authContext';
 import { deleteRecipe } from '../API/recipeData';
 
 function RecipeCard({ recipeObj, onUpdate }) {
-  const { user } = useAuth;
+  const { user } = useAuth();
+
   console.warn(user);
   const deleteThisRecipe = () => {
     if (window.confirm(`Delete ${recipeObj.name}?`)) {

@@ -72,6 +72,7 @@ function RecipeForm({ obj }) {
         water: converter(),
         flourAmount: converter('cups'),
         yeastAmount: converter('ounces'),
+        uid: user.uid,
       };
       createRecipe(payload).then(() => {
         router.push('/');

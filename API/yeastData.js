@@ -35,8 +35,8 @@ const deleteYeast = (uid) => new Promise((resolve, reject) => {
 });
 
 const updateYeast = (yeastObj) => new Promise((resolve, reject) => {
-  axios.patch(`${dbUrl}/Flours/${yeastObj.firebaseKey}.json`, yeastObj)
-    .then(() => getYeasts(yeastObj.user).then(resolve))
+  axios.patch(`${dbUrl}/Yeasts/${yeastObj.firebaseKey}.json`, yeastObj)
+    .then(() => getYeasts(yeastObj.firebaseKey).then(resolve))
     .catch(reject);
 });
 
