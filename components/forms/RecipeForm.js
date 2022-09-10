@@ -11,14 +11,14 @@ import { getYeasts } from '../../API/yeastData';
 import getSalts from '../../API/saltData';
 
 const initialState = {
-  name: '',
-  saltAmount: '',
-  water: '',
-  flourAmount: '',
-  yeastAmount: '',
-  directions: '',
-  image: '',
-  public: true,
+  // name: '',
+  // saltAmount: 0,
+  // water: 0,
+  // flourAmount: 0,
+  // yeastAmount: 0,
+  // directions: '',
+  // image: '',
+  // public: true,
 };
 
 function RecipeForm({ obj }) {
@@ -62,7 +62,7 @@ function RecipeForm({ obj }) {
     e.preventDefault();
     if (obj.firebaseKey) {
       updateRecipe(formInput)
-        .then(() => router.push(`/Recipes/${obj.firebaseKey}`));
+        .then(() => router.push('/'));
     } else {
       console.warn(user.uid);
       const payload = {
@@ -194,11 +194,11 @@ RecipeForm.propTypes = {
     flourId: PropTypes.string,
     yeastId: PropTypes.string,
     saltId: PropTypes.string,
-    flourAmount: PropTypes.string,
-    yeastAmount: PropTypes.string,
+    flourAmount: PropTypes.number,
+    yeastAmount: PropTypes.number,
     name: PropTypes.string,
-    saltAmount: PropTypes.string,
-    water: PropTypes.string,
+    saltAmount: PropTypes.number,
+    water: PropTypes.number,
     directions: PropTypes.string,
     public: PropTypes.bool,
     userName: PropTypes.string,

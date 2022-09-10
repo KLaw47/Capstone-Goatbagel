@@ -35,13 +35,13 @@ const deleteUser = (uid) => new Promise((resolve, reject) => {
 });
 
 const updateUser = (userObj) => new Promise((resolve, reject) => {
-  axios.patch(`${dbUrl}/users/${userObj.firebaseKey}.json`, yeastObj)
+  axios.patch(`${dbUrl}/users/${userObj.firebaseKey}.json`, userObj)
     .then(() => getUsers(userObj.firebaseKey).then(resolve))
     .catch(reject);
 });
 
-const getSingleUser = (firebaseKey) => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/users/${firebaseKey}.json`)
+const getSingleUser = (uid) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/users/${uid}.json`)
     .then((response) => resolve(response.data))
     .catch(reject);
 });
@@ -52,4 +52,4 @@ export {
   createUser,
   updateUser,
   deleteUser,
-}
+};

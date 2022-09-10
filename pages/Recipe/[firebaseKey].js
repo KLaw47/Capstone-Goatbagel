@@ -6,13 +6,13 @@ import Button from 'react-bootstrap/Button';
 import Link from 'next/link';
 import { deleteRecipe } from '../../API/recipeData';
 import viewRecipeDetails from '../../API/mergedData';
-// import { useAuth } from '../../utils/context/authContext';
+import { useAuth } from '../../utils/context/authContext';
 
 export default function ViewRecipeDetail() {
   const [recipeDetail, setRecipeDetail] = useState({});
   const router = useRouter();
   const { firebaseKey } = router.query;
-  // const { user } = useAuth;
+  const { user } = useAuth();
   const deleteThisRecipe = () => {
     if (window.confirm(`Delete ${recipeDetail.name}?`)) {
       deleteRecipe(recipeDetail.firebaseKey).then(router.push('/'));
@@ -39,12 +39,21 @@ export default function ViewRecipeDetail() {
       </div>
       <div>
         {recipeDetail.directions}
-        <Link href={`/Recipe/edit/${recipeDetail.firebaseKey}`} passHref>
-          <Button variant="info">EDIT</Button>
-        </Link>
-        <Button variant="danger" onClick={deleteThisRecipe} className="m-2">
-          DELETE
-        </Button>
+        <>
+          <Link href={`/user/${recipeDetail.uid}`} passHref>
+            <Button variant="info">{recipeDetail.userName}</Button>
+          </Link>
+        </>
+        {recipeDetail.uid === user.uid ? (
+          <>
+            <Link href={`/Recipe/edit/${recipeDetail.firebaseKey}`} passHref>
+              <Button variant="info">EDIT</Button>
+            </Link>
+            <Button variant="danger" onClick={deleteThisRecipe} className="m-2">
+              DELETE
+            </Button>
+          </>
+        ) : ''}
       </div>
     </div>
   );

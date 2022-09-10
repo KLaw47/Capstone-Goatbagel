@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { getUserRecipes } from '../../API/recipeData';
@@ -8,16 +9,22 @@ export default function MyRecipes() {
   const [recipes, setRecipes] = useState([]);
   const router = useRouter();
   const { uid } = router.query;
+  const getAllTheRecipes = () => {
+    getUserRecipes(uid).then(setRecipes);
+  };
+
+  const titleName = recipes.find((item) => item.uid === uid);
 
   useEffect(() => {
-    getUserRecipes(uid).then(setRecipes);
+    getAllTheRecipes();
   }, [uid]);
-
+  // console.warn(recipes);
   return (
     <div className="text-center my-4">
       <div className="d-flex flex-wrap">
+        <h1>{titleName?.userName}</h1>
         {recipes.map((recipe) => (
-          <RecipeCard key={recipe.firebaseKey} recipeObj={recipe} onUpdate={getUserRecipes} />
+          <RecipeCard key={recipe.firebaseKey} recipeObj={recipe} onUpdate={getAllTheRecipes} />
         ))}
       </div>
 
