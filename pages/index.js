@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 // import { signOut } from '../utils/auth';
-import { useAuth } from '../utils/context/authContext';
+// mport { useAuth } from '../utils/context/authContext';
 import { getRecipes } from '../API/recipeData';
 import RecipeCard from '../components/RecipeCard';
 
 function Home() {
   const [recipes, setRecipes] = useState([]);
-  const { user } = useAuth();
+  // const { user } = useAuth();
   const getAllTheRecipes = () => {
     getRecipes().then(setRecipes);
   };
@@ -18,7 +18,7 @@ function Home() {
     <div className="text-center my-4">
       <div className="d-flex flex-wrap">
         {recipes.map((recipe) => (
-          <RecipeCard key={recipe.firebaseKey} recipeObj={recipe} user={user} onUpdate={getAllTheRecipes} />
+          <RecipeCard key={recipe.firebaseKey} recipeObj={recipe} onUpdate={getAllTheRecipes} />
         ))}
       </div>
 

@@ -23,8 +23,8 @@ function UserProfile() {
           <Modal.Title>Profile</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>UserName={user.displayName}</p>
-          <p>Email={user.email}</p>
+          <p>{user.displayName}</p>
+          <p>{user.email}</p>
           <img src={user.photoURL} alt={user} />
         </Modal.Body>
         <Modal.Footer>

@@ -9,7 +9,6 @@ import { deleteRecipe } from '../API/recipeData';
 function RecipeCard({ recipeObj, onUpdate }) {
   const { user } = useAuth();
 
-  console.warn(user);
   const deleteThisRecipe = () => {
     if (window.confirm(`Delete ${recipeObj.name}?`)) {
       deleteRecipe(recipeObj.firebaseKey).then(() => onUpdate());
@@ -19,7 +18,7 @@ function RecipeCard({ recipeObj, onUpdate }) {
   return (
     <Card className="card" style={{ width: '20rem', margin: '10px' }}>
       <Link href={`/Recipe/${recipeObj.firebaseKey}`} passHref>
-        <Card.Img variant="top" src={recipeObj.image} alt={recipeObj.name} style={{ height: '300px' }} />
+        <Card.Img variant="top" src={recipeObj.image} alt={recipeObj.name} style={{ height: '400px' }} />
       </Link>
       <Card.Body>
         <Card.Title>{recipeObj.name}</Card.Title>
