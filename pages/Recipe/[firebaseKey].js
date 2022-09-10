@@ -36,9 +36,6 @@ export default function ViewRecipeDetail() {
         <p>Water: {recipeDetail.water} Grams</p>
         <p>Flour: {recipeDetail.flourAmount} Grams</p>
         <p>Yeast: {recipeDetail.yeastAmount} Grams</p>
-      </div>
-      <div>
-        {recipeDetail.directions}
         <>
           <Link href={`/user/${recipeDetail.uid}`} passHref>
             <Button variant="info">{recipeDetail.userName}</Button>
@@ -54,6 +51,9 @@ export default function ViewRecipeDetail() {
             </Button>
           </>
         ) : ''}
+      </div>
+      <div>
+        {recipeDetail.directions}
       </div>
     </div>
   );

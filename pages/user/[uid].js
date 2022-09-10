@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { getUserRecipes } from '../../API/recipeData';
-import RecipeCard from '../../components/RecipeCard';
+import RecipeCard from '../../components/recipeCard';
 // import { useAuth } from '../../utils/context/authContext';
 
 export default function MyRecipes() {
@@ -21,8 +21,8 @@ export default function MyRecipes() {
   // console.warn(recipes);
   return (
     <div className="text-center my-4">
+      <h1>{titleName?.userName}</h1>
       <div className="d-flex flex-wrap">
-        <h1>{titleName?.userName}</h1>
         {recipes.map((recipe) => (
           <RecipeCard key={recipe.firebaseKey} recipeObj={recipe} onUpdate={getAllTheRecipes} />
         ))}
