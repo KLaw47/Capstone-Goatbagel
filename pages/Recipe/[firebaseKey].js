@@ -13,6 +13,9 @@ export default function ViewRecipeDetail() {
   const router = useRouter();
   const { firebaseKey } = router.query;
   const { user } = useAuth();
+  const getThisRecipe = () => {
+    viewRecipeDetails(firebaseKey).then(setRecipeDetail);
+  };
   const deleteThisRecipe = () => {
     if (window.confirm(`Delete ${recipeDetail.name}?`)) {
       deleteRecipe(recipeDetail.firebaseKey).then(router.push('/'));
@@ -20,7 +23,7 @@ export default function ViewRecipeDetail() {
   };
 
   useEffect(() => {
-    viewRecipeDetails(firebaseKey).then(setRecipeDetail);
+    getThisRecipe();
   }, []);
   // console.warn(recipeDetail);
   return (
