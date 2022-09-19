@@ -41,15 +41,15 @@ export default function ViewRecipeDetail() {
         <p>Yeast: {recipeDetail.yeastAmount} Grams</p>
         <>
           <Link href={`/user/${recipeDetail.uid}`} passHref>
-            <Button variant="info">{recipeDetail.userName}</Button>
+            <Button className="nameLink">{recipeDetail.userName}</Button>
           </Link>
         </>
         {recipeDetail.uid === user.uid ? (
           <>
             <Link href={`/Recipe/edit/${recipeDetail.firebaseKey}`} passHref>
-              <Button variant="info">EDIT</Button>
+              <Button className="edit">EDIT</Button>
             </Link>
-            <Button variant="danger" onClick={deleteThisRecipe} className="m-2">
+            <Button className="delete" onClick={deleteThisRecipe}>
               DELETE
             </Button>
           </>

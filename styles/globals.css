@@ -3,9 +3,11 @@
 html,
 body {
   padding: 0;
+  color: wheat;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
 }
 
 a {
@@ -18,5 +20,120 @@ a {
 }
 
 body {
-  background-color: #63666a;
+  background-color: #2A2C24;
+}
+
+.card {
+  color: #CFCFEA;
+  background-color: #575A4B;
+  border: 3px solid black;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.edit {
+  color: black;
+  font-weight: 600;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: #A89B9D;
+  margin: 5px 5px;
+  border: 2px solid black;
+}
+
+.edit:hover {
+  background-color: #CFCFEA;
+  color: black;
+  border: 2px solid black;
+}
+
+.delete {
+  color: black;
+  font-weight: 600;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: #4C4244;
+  margin: 5px 5px;
+  border: 2px solid black;
+}
+
+.delete:hover {
+  background-color: #CFCFEA;
+  color: black;
+  border: 2px solid black;
+}
+
+.nameLink {
+  color: black;
+  font-weight: 600;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color:#BDB3B5 ;
+  margin: 5px 5px;
+  border: 2px solid black;
+}
+
+.nameLink:hover {
+  background-color: #C6C6E6;
+  color: black;
+  border: 2px solid black;
+}
+.profile {
+  color: black;
+  font-weight: 600;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color:#BDB3B5 ;
+  margin: 5px 5px;
+  border: 2px solid black;
+}
+
+.profile:hover {
+  background-color: #C6C6E6;
+  color: black;
+  border: 2px solid black;
+}
+
+.profile:focus {
+  background-color: #C6C6E6;
+  color: black;
+  border: 2px solid black;
+}
+
+.create {
+  color: black;
+  font-weight: 600;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color:#BDB3B5 ;
+  margin: 5px 5px;
+  border: 2px solid black;
+}
+
+.create:hover {
+  background-color: #C6C6E6;
+  color: black;
+  border: 2px solid black;
+}
+
+.mb-3 {
+  color: black;
+  font-weight: 600;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color:lightgray;
+}
+
+.modal {
+  background-color: #575A4B;
+  color: black;
+}
+
+.modal-header {
+  background-color: #575A4B;
+}
+.modal-body {
+  background-color: #575A4B;
+}
+
+.modal-footer {
+  background-color: #575A4B;
+}
+
+.logo {
+  height: 60px;
+  width: 60px;
 }

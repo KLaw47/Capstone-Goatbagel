@@ -26,9 +26,9 @@ function RecipeCard({ recipeObj, onUpdate }) {
         {recipeObj.uid === user.uid ? (
           <>
             <Link href={`/Recipe/edit/${recipeObj.firebaseKey}`} passHref>
-              <Button variant="info">EDIT</Button>
+              <Button className="edit">EDIT</Button>
             </Link>
-            <Button variant="danger" onClick={deleteThisRecipe} className="m-2">
+            <Button className="delete" onClick={deleteThisRecipe}>
               DELETE
             </Button>
           </>
