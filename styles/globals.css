@@ -133,7 +133,8 @@ body {
   background-color: #575A4B;
 }
 
-.logo {
-  height: 60px;
-  width: 60px;
+.signinLogo {
+  height: 60em;
+  width: 60em;
+  justify-content: center;
 }
