@@ -14,7 +14,7 @@ function UserProfile() {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button className="profile" onClick={handleShow}>
         Profile
       </Button>
 
@@ -28,10 +28,11 @@ function UserProfile() {
           <img src={user.photoURL} alt={user} />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button className="delete" onClick={handleClose}>
             Close
           </Button>
           <Button
+            className="edit"
             onClick={signOut}
             variant="primary"
           >Sign Out

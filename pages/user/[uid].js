@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { getUserRecipes } from '../../API/recipeData';
-import RecipeCard from '../../components/RecipeCard';
+import RecipeCard from '../../components/recipeCard';
 // import { useAuth } from '../../utils/context/authContext';
 
 export default function MyRecipes() {

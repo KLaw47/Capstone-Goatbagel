@@ -13,7 +13,8 @@ function Signin() {
       }}
     >
       <h1>GOATbagel</h1>
-      <button type="button" className="btn btn-primary btn-lg copy-btn" onClick={signIn}>
+      <h3>A unit conversion app</h3>
+      <button type="button" className="nameLink" onClick={signIn}>
         Sign In
       </button>
     </div>

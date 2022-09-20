@@ -85,9 +85,9 @@ function RecipeForm({ obj }) {
       <Form onSubmit={handleSubmit}>
         <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Recipe</h2>
         <FloatingLabel controlId="floatingInput1" label="Recipe Name" className="mb-3">
-          <Form.Control type="text" placeholder="Enter Recipe Name" name="name" value={formInput.name} onChange={handleChange} required />
+          <Form.Control type="text" placeholder="Enter Recipe Name" name="name" value={formInput.name} onChange={handleChange} required className="mb-3" />
         </FloatingLabel>
-        <FloatingLabel controlId="floatingSelect" label="Salt">
+        <FloatingLabel controlId="floatingSelect" label="Salt" className="mb-3">
           <Form.Select
             aria-label="Salt"
             name="saltId"
@@ -110,15 +110,15 @@ function RecipeForm({ obj }) {
           </Form.Select>
         </FloatingLabel>
         <FloatingLabel controlId="floatingInput2" label="Water" className="mb-3">
-          <Form.Control type="text" placeholder="Enter Water Amount" name="water" value={formInput.water} onChange={handleChange} required />
+          <Form.Control type="text" placeholder="Enter Water Amount" name="water" value={formInput.water} onChange={handleChange} required className="mb-3" />
         </FloatingLabel>
         <FloatingLabel controlId="floatingInput2" label="Directions" className="mb-3">
-          <Form.Control type="text" placeholder="Enter Directions" name="directions" value={formInput.directions} onChange={handleChange} required />
+          <Form.Control type="text" placeholder="Enter Directions" name="directions" value={formInput.directions} onChange={handleChange} required className="mb-3" />
         </FloatingLabel>
         <FloatingLabel controlId="floatingInput2" label="Image" className="mb-3">
-          <Form.Control type="text" placeholder="Image" name="image" value={formInput.image} onChange={handleChange} required />
+          <Form.Control type="text" placeholder="Image" name="image" value={formInput.image} onChange={handleChange} required className="mb-3" />
         </FloatingLabel>
-        <FloatingLabel controlId="floatingSelect" label="Flour">
+        <FloatingLabel controlId="floatingSelect" label="Flour" className="mb-3">
           <Form.Select
             aria-label="Flour"
             name="flourId"
@@ -140,7 +140,7 @@ function RecipeForm({ obj }) {
           }
           </Form.Select>
         </FloatingLabel>
-        <FloatingLabel controlId="floatingSelect" label="Yeast">
+        <FloatingLabel controlId="floatingSelect" label="Yeast" className="mb-3">
           <Form.Select
             aria-label="yeast"
             name="yeastId"
@@ -163,16 +163,16 @@ function RecipeForm({ obj }) {
           </Form.Select>
         </FloatingLabel>
         <FloatingLabel controlId="floatingInput1" label="Cups Flour" className="mb-3">
-          <Form.Control type="text" placeholder="Enter Recipe Flour" name="flourAmount" value={formInput.flourAmount} onChange={handleChange} required />
+          <Form.Control type="text" placeholder="Enter Recipe Flour" name="flourAmount" value={formInput.flourAmount} onChange={handleChange} required className="mb-3" />
         </FloatingLabel>
         <FloatingLabel controlId="floatingInput1" label="Ounces Yeast" className="mb-3">
-          <Form.Control type="text" placeholder="Enter Recipe Yeast" name="yeastAmount" value={formInput.yeastAmount} onChange={handleChange} required />
+          <Form.Control type="text" placeholder="Enter Recipe Yeast" name="yeastAmount" value={formInput.yeastAmount} onChange={handleChange} required className="mb-3" />
         </FloatingLabel>
         <FloatingLabel controlId="floatingInput1" label="Teaspoons Salt" className="mb-3">
-          <Form.Control type="text" placeholder="Enter Recipe Salt" name="saltAmount" value={formInput.saltAmount} onChange={handleChange} required />
+          <Form.Control type="text" placeholder="Enter Recipe Salt" name="saltAmount" value={formInput.saltAmount} onChange={handleChange} required className="mb-3" />
         </FloatingLabel>
         <Form.Check
-          className="text-white mb-3"
+          className="mb-3"
           type="switch"
           id="public"
           name="public"
@@ -183,7 +183,7 @@ function RecipeForm({ obj }) {
             public: e.target.checked,
           }))}
         />
-        <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Recipe</Button>
+        <Button className="create" type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Recipe</Button>
       </Form>
     </>
   );

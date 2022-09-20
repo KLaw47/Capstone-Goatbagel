@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 // import { signOut } from '../utils/auth';
 // mport { useAuth } from '../utils/context/authContext';
 import { getRecipes } from '../API/recipeData';
-import RecipeCard from '../components/RecipeCard';
+import RecipeCard from '../components/recipeCard';
 
 function Home() {
   const [recipes, setRecipes] = useState([]);
