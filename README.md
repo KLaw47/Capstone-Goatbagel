@@ -16,6 +16,8 @@
   
   [Wireframe](https://www.figma.com/file/rgwI4IVot1M7SIABLzf7SF/GoatBagel?node-id=0%3A1)
   
+  [Project Board](https://github.com/users/KLaw47/projects/6/views/1)
+  
 ## Features to come
   - comment board when viewing a recipe, allowing users to recommend substitutions or tips for specific recipe
   - yeast type substitution function, this function will display substitution amounts for different yeast types
