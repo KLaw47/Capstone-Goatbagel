@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import { signOut } from '../utils/auth';
-// mport { useAuth } from '../utils/context/authContext';
 import { getRecipes } from '../API/recipeData';
 import RecipeCard from '../components/RecipeCard';
 
@@ -10,9 +8,10 @@ function Home() {
   const getAllTheRecipes = () => {
     getRecipes().then(setRecipes);
   };
+
   useEffect(() => {
     getAllTheRecipes();
-  }, []);
+  }, [recipes]);
   // console.warn(recipes);
   return (
     <div className="text-center my-4">

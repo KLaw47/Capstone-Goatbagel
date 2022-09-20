@@ -162,13 +162,13 @@ function RecipeForm({ obj }) {
           }
           </Form.Select>
         </FloatingLabel>
-        <FloatingLabel controlId="floatingInput1" label="Cups Flour" className="mb-3">
+        <FloatingLabel controlId="floatingInput1" label={obj.firebaseKey ? 'Grams Flour' : 'Cups Flour'} className="mb-3">
           <Form.Control type="text" placeholder="Enter Recipe Flour" name="flourAmount" value={formInput.flourAmount} onChange={handleChange} required className="mb-3" />
         </FloatingLabel>
-        <FloatingLabel controlId="floatingInput1" label="Ounces Yeast" className="mb-3">
+        <FloatingLabel controlId="floatingInput1" label={obj.firebaseKey ? 'Grams Yeast' : 'Ounces Yeast'} className="mb-3">
           <Form.Control type="text" placeholder="Enter Recipe Yeast" name="yeastAmount" value={formInput.yeastAmount} onChange={handleChange} required className="mb-3" />
         </FloatingLabel>
-        <FloatingLabel controlId="floatingInput1" label="Teaspoons Salt" className="mb-3">
+        <FloatingLabel controlId="floatingInput1" label={obj.firebaseKey ? 'Grams Salt' : 'Teaspoons Salt'} className="mb-3">
           <Form.Control type="text" placeholder="Enter Recipe Salt" name="saltAmount" value={formInput.saltAmount} onChange={handleChange} required className="mb-3" />
         </FloatingLabel>
         <Form.Check
