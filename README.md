@@ -5,6 +5,9 @@
   Goatbagel is a unit conversion app for baking yeasted breads.
   Recipe creation allows a user to select a dropdown for currently coded yeast/flour conversions. Conversions are made from Imperial volume measurements to Metric weight measurements.
   Recipes created as public are added to a Firebase realtime Database for all users.
+  
+## Who is it for?
+  This app is for the beginner or amateur baker, looking for an easy way to convert bread recipes for a more accurate end product.
 
 ## Details
   This web application makes use of React and Next.js for client side unit conversion.
