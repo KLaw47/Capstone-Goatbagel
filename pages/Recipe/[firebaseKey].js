@@ -18,7 +18,7 @@ export default function ViewRecipeDetail() {
   };
   const deleteThisRecipe = () => {
     if (window.confirm(`Delete ${recipeDetail.name}?`)) {
-      deleteRecipe(recipeDetail.firebaseKey).then(router.push('/'));
+      deleteRecipe(recipeDetail.firebaseKey).then(() => router.push('/'));
     }
   };
 
