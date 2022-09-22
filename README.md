@@ -18,6 +18,8 @@
   
   [Project Board](https://github.com/users/KLaw47/projects/6/views/1)
   
+  [Loom Video](https://www.loom.com/share/97848d684785496c9a855cd0fcb51860)
+  
 ## Current Features
   Users can create and store a recipe, values are converted on submission of create form.
   Users can edit recipes that they have created.
