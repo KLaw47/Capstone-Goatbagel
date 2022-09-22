@@ -109,11 +109,8 @@ function RecipeForm({ obj }) {
           }
           </Form.Select>
         </FloatingLabel>
-        <FloatingLabel controlId="floatingInput2" label="Water" className="mb-3">
+        <FloatingLabel controlId="floatingInput2" label={obj.firebaseKey ? 'Grams water' : 'Cups Water'} className="mb-3">
           <Form.Control type="text" placeholder="Enter Water Amount" name="water" value={formInput.water} onChange={handleChange} required className="mb-3" />
-        </FloatingLabel>
-        <FloatingLabel controlId="floatingInput2" label="Directions" className="mb-3">
-          <Form.Control type="text" placeholder="Enter Directions" name="directions" value={formInput.directions} onChange={handleChange} required className="mb-3" />
         </FloatingLabel>
         <FloatingLabel controlId="floatingInput2" label="Image" className="mb-3">
           <Form.Control type="text" placeholder="Image" name="image" value={formInput.image} onChange={handleChange} required className="mb-3" />
@@ -170,6 +167,9 @@ function RecipeForm({ obj }) {
         </FloatingLabel>
         <FloatingLabel controlId="floatingInput1" label={obj.firebaseKey ? 'Grams Salt' : 'Teaspoons Salt'} className="mb-3">
           <Form.Control type="text" placeholder="Enter Recipe Salt" name="saltAmount" value={formInput.saltAmount} onChange={handleChange} required className="mb-3" />
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingInput2" label="Directions" className="mb-3">
+          <Form.Control type="text" placeholder="Enter Directions" name="directions" value={formInput.directions} onChange={handleChange} required className="mb-3" />
         </FloatingLabel>
         <Form.Check
           className="mb-3"
