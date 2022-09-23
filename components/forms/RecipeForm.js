@@ -64,7 +64,6 @@ function RecipeForm({ obj }) {
       updateRecipe(formInput)
         .then(() => router.push('/'));
     } else {
-      console.warn(user.uid);
       const payload = {
         ...formInput,
         userName: user.displayName,

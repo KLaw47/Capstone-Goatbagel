@@ -18,7 +18,6 @@ export default function MyRecipes() {
   useEffect(() => {
     getAllTheRecipes();
   }, [uid]);
-  // console.warn(recipes);
   return (
     <div className="text-center my-4">
       <h1>{titleName?.userName}</h1>
