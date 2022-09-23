@@ -25,7 +25,6 @@ export default function ViewRecipeDetail() {
   useEffect(() => {
     getThisRecipe();
   }, []);
-  // console.warn(recipeDetail);
   return (
     <div className="mt-5 d-flex flex-wrap">
       <div className="d-flex flex-column">
